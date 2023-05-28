@@ -1,0 +1,11 @@
+.button-container {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  margin-top: 10px;
+}
+
+.seconds-container {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  margin-top: 10px;
+ }
