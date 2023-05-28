@@ -1,5 +1,3 @@
 body{
-    background: rgb(180,165,245);
-background: linear-gradient(128deg, rgba(180,165,245,1) 0%, rgba(176,118,203,1) 14%, rgba(225,174,227,1) 34%, rgba(240,116,193,1) 57%, rgba(176,118,203,1) 77%, rgba(180,165,245,1) 100%);
- background-size: auto;
+    background-image: url("https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/d78d0744579283.5817430886a8b.jpg");
 }

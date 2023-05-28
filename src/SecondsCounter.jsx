@@ -35,14 +35,15 @@ class SecondsCounter extends Component {
       }));
 
       if (this.state.time === 0) {
+        console.log("oka")
         clearInterval(this.timer);
         this.setState({ isRunning: false });
         this.toggleTime();
         this.startTimer();
       }
     }, 10);
-    const workingSound = new Audio(notificationSound2);
-    workingSound.play();
+    this.workingSound.play();
+    
     
   };
 
@@ -51,11 +52,24 @@ class SecondsCounter extends Component {
       const { isBreak, workTime, breakTime } = prevState;
 
       if (isBreak) {
+         // Reproducir otro sonido
+         this.breakSound.pause();
+         this.breakSound.currentTime = 0; // Reiniciar el audio al inicio
+
+         this.workingSound.play();
+
+        console.log("Estoy trabajando")
         return {
           time: workTime,
           isBreak: false,
         };
       } else {
+        console.log("Estoy descansando")
+        // Reproducir otro sonido
+        this.workingSound.pause();
+        this.workingSound.currentTime = 0; // Reiniciar el audio al inicio
+
+        this.breakSound.play();
 
         return {
           time: breakTime,
@@ -63,28 +77,10 @@ class SecondsCounter extends Component {
         };
       }
     });
-  };
-
-  playRunningSound() {
-    this.workingSound.play();
   }
-
-  playBreakSound() {
-    this.breakSound.play();
-  }
-
-  componentDidUpdate(prevState) {
-    // Verificar si `isRunning` cambió de `false` a `true`
-    if (!prevState.isRunning && this.state.isRunning) {
-      this.playRunningSound();
-    }
   
-    // Verificar si `isBreak` cambió de `false` a `true`
-    if (!prevState.isBreak && this.state.isBreak) {
-      this.playBreakSound();
-    }
-  }
-  startTimerOnClick = () => {
+
+   startTimerOnClick = () => {
     this.setState(
       (prevState) => ({
         isRunning: !prevState.isRunning,
@@ -127,21 +123,28 @@ class SecondsCounter extends Component {
     const { time, isBreak } = this.state;
 
     return (
-      // <div className="container">
-      <div className="row align-items-center">
-        <div className="col-12">
-          <div className="seconds-container col-6 text-center">
+<div>
+  <div className="container">
+    <div className="row ">
+      <div className="col-12">
+          <div className="seconds-container text-center m-5 p-4">
             <div className="justify-content-center">
-              <h1 className="display-5">
+              <h1 className="display-5 text-light">
                 <FcFullBattery />
                 <FcLikePlaceholder />
                 {isBreak ? "Break" : "Work"} <FcReading />
                 <FcReadingEbook />
               </h1>
-              <p className="display-4">{this.formatTime(time)}</p>
+              <p className="display-4 text-light">{this.formatTime(time)}</p>
             </div>
           </div>
-          <div className="button-container col-3 text-center">
+      </div>
+    </div>
+  </div>
+  <div className="container2">
+    <div className="row2">
+      <div className="col-12">
+          <div className="button-container text-center ">
             <button
               className="btn btn-secondary"
               onClick={this.startTimerOnClick}
@@ -154,10 +157,12 @@ class SecondsCounter extends Component {
             <button className="btn btn-secondary" onClick={this.pauseTimer}>
               <AiOutlinePause />
             </button>
+            
           </div>
-        </div>
       </div>
-      // </div>
+    </div>
+  </div>
+</div>
     );
   }
 }
