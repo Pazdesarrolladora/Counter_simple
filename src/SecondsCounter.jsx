@@ -43,6 +43,8 @@ class SecondsCounter extends Component {
       }
     }, 10);
     this.workingSound.play();
+    this.breakSound.play();
+
     
     
   };
@@ -52,11 +54,10 @@ class SecondsCounter extends Component {
       const { isBreak, workTime, breakTime } = prevState;
 
       if (isBreak) {
+
          // Reproducir otro sonido
          this.breakSound.pause();
          this.breakSound.currentTime = 0; // Reiniciar el audio al inicio
-
-         this.workingSound.play();
 
         console.log("Estoy trabajando")
         return {
@@ -68,7 +69,7 @@ class SecondsCounter extends Component {
         // Reproducir otro sonido
         this.workingSound.pause();
         this.workingSound.currentTime = 0; // Reiniciar el audio al inicio
-
+       
         this.breakSound.play();
 
         return {
@@ -77,7 +78,7 @@ class SecondsCounter extends Component {
         };
       }
     });
-  }
+  };
   
 
    startTimerOnClick = () => {
