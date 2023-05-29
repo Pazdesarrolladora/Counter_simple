@@ -41,9 +41,9 @@ class SecondsCounter extends Component {
         this.toggleTime();
         this.startTimer();
       }
-    }, 1000);
+    }, 10);
     this.workingSound.play();
-    this.breakSound.play();  
+    // this.breakSound.play();  
     
   };
 
